@@ -5,6 +5,8 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS="2"
 # Set python to use utf-8 rather than ascii.
 ENV PYTHONIOENCODING="UTF-8"
 
+ENV TZ Asia/Shanghai
+
 # Add edge/testing repositories.
 RUN printf "\
 @edge http://nl.alpinelinux.org/alpine/edge/main\n\
@@ -19,5 +21,5 @@ RUN chmod -v +x \
     /etc/services.d/*/run
 
 # Ports and volumes.
-EXPOSE 5050/tcp
+EXPOSE 6566/tcp
 VOLUME /config
