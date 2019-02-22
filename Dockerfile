@@ -1,4 +1,4 @@
-FROM lsiobase/alpine.python:3.7
+FROM lsiobase/alpine.python3:3.9
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS="2"
 
@@ -6,13 +6,14 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS="2"
 ENV PYTHONIOENCODING="UTF-8"
 
 ENV TZ Asia/Shanghai
+ENV LANG C.UTF-8
 
 # Add edge/testing repositories.
 RUN printf "\
-@edge http://nl.alpinelinux.org/alpine/edge/main\n\
-@testing http://nl.alpinelinux.org/alpine/edge/testing\n\
-@community http://nl.alpinelinux.org/alpine/edge/community\n\
-" >> /etc/apk/repositories
+@edge https://mirrors.shu.edu.cn/alpine/edge/main\n\
+@testing https://mirrors.shu.edu.cn/alpine/edge/testing\n\
+@community https://mirrors.shu.edu.cn/alpine/edge/community\n\
+" > /etc/apk/repositories
 
 # Copy local files.
 COPY etc/ /etc
