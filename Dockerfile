@@ -10,9 +10,9 @@ ENV LANG C.UTF-8
 
 # Add edge/testing repositories.
 RUN printf "\
-@edge https://mirrors.shu.edu.cn/alpine/edge/main\n\
-@testing https://mirrors.shu.edu.cn/alpine/edge/testing\n\
-@community https://mirrors.shu.edu.cn/alpine/edge/community\n\
+@edge https://mirrors.ustc.edu.cn/alpine/edge/main\n\
+@testing https://mirrors.ustc.edu.cn/alpine/edge/testing\n\
+@community https://mirrors.ustc.edu.cn/alpine/edge/community\n\
 " > /etc/apk/repositories
 
 # Copy local files.
