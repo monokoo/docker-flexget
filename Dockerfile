@@ -1,4 +1,5 @@
-FROM lsiobase/alpine.python3:3.9
+# 3.9 cannot install g++
+FROM lsiobase/alpine.python3:3.8
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS="2"
 
