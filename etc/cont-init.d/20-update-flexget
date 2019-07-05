@@ -9,6 +9,7 @@ pip install -U rarfile
 pip install -U cloudscraper
 pip install -U python-telegram-bot
 pip install -U subliminal
+pip install -U guessit
 
 
 # Install libtorrent-rasterbar, a dependency for e.g.
