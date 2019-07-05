@@ -1,31 +1,20 @@
 #!/usr/bin/with-contenv bash
 
 pip install -U pip
-# Make sure to install setuptools version >=36 to avoid a race condition, see:
-# https://github.com/pypa/setuptools/issues/951
-pip install -U setuptools>=36
-pip install -U "urllib3[socks]<1.25"
-
-apk add --no-cache \
-    g++ \
-    python3-dev
+pip install -U "urllib3[socks]"
     
 pip install -U chardet
 pip install -U irc_bot
 pip install -U rarfile
 pip install -U cloudscraper
 pip install -U python-telegram-bot
+pip install -U subliminal
 
 
 # Install libtorrent-rasterbar, a dependency for e.g.
 # flexget plugin `convert_magnet`.
-apk add --update --no-cache --virtual=build-dependencies \
+apk add --update --no-cache \
     apk-tools
-
-# Dependency
-apk add --no-cache \
-    unrar@edge \
-    nodejs@edge
 
 # Dependency for libtorrent-rasterbar.
 apk add --no-cache \
@@ -33,12 +22,11 @@ apk add --no-cache \
     boost-system@edge \
     libressl-dev@edge
 
-# libtorrent-rasterbar contains the python bindings libtorrent.
+# libtorrent-rasterbar contains the python bindings for libtorrent.
 apk add --no-cache \
     libcrypto1.1@edge \
-    libssl1.1@edge
-    # there are no py3-bindings yet, i.e. python3 -c "import libtorrent" will fail
-    # libtorrent-rasterbar@testing
+    libssl1.1@edge \
+    py3-libtorrent-rasterbar@testing
 
 # Install flexget last (it might force specific versions of other packages).
 pip install -U flexget
