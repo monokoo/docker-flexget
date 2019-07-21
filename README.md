@@ -1,10 +1,10 @@
-# cpoppema/docker-flexget
+# monokoo/docker-flexget
 
-[![Build Status](https://img.shields.io/badge/monokoo-docker--flexget-brightgreen.svg)](https://hub.docker.com/r/monokoo/flexget/builds)
+[![Build Status](https://img.shields.io/docker/build/monokoo/flexget.svg)](https://hub.docker.com/r/monokoo/flexget/builds)
 
 Read all about FlexGet [here](http://www.flexget.com/#Description).
 
-If you do not have a configuration already, you can look around starting off with something like this [config.yml](https://github.com/cpoppema/docker-flexget/blob/master/sample_config.yml):
+If you do not have a configuration already, you can look around starting off with something like this [config.yml](https://github.com/monokoo/docker-flexget/blob/master/sample_config.yml):
 ```
 web_server: yes
 
