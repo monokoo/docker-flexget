@@ -1,6 +1,6 @@
 # monokoo/docker-flexget
 
-[![Build Status](https://img.shields.io/docker/build/monokoo/flexget.svg)](https://hub.docker.com/r/monokoo/flexget/builds)
+[![Build Status](https://img.shields.io/docker/cloud/automated/monokoo/flexget.svg?style=popout)](https://hub.docker.com/r/monokoo/flexget/builds)
 
 Read all about FlexGet [here](http://www.flexget.com/#Description).
 
