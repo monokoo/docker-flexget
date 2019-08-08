@@ -3,16 +3,13 @@
 # Simply using it as a baseimage fails:
 # - installing g++ fails (baseimage already installs it and purges it afterwards, so let's keep it)
 # - installing python 3.7.3 because that is what py3-libtorrent-rasterbar requires (doesn't work with 3.6.8)
-FROM lsiobase/alpine:3.10
-
-ENV TZ Asia/Shanghai
-ENV LANG C.UTF-8
+FROM lsiobase/alpine:arm64v8-3.10
 
 # Add edge/testing repositories.
 RUN printf "\
-@edge https://mirrors.cloud.tencent.com/alpine/edge/main\n\
-@testing https://mirrors.cloud.tencent.com/alpine/edge/testing\n\
-@community https://mirrors.cloud.tencent.com/alpine/edge/community\n\
+@edge http://nl.alpinelinux.org/alpine/edge/main\n\
+@testing http://nl.alpinelinux.org/alpine/edge/testing\n\
+@community http://nl.alpinelinux.org/alpine/edge/community\n\
 " >> /etc/apk/repositories
 
 RUN apk add \
@@ -55,7 +52,6 @@ RUN \
     tar \
     tiff \
     unrar \
-    nodejs \
     unzip \
     vnstat \
     wget \
@@ -104,7 +100,7 @@ RUN chmod -v +x \
     /etc/services.d/*/run
 
 # Ports and volumes.
-EXPOSE 6566/tcp
+EXPOSE 5050/tcp
 VOLUME /config
 
 # Flexget looks for config.yml automatically inside:
