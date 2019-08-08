@@ -51,6 +51,7 @@ RUN \
     libwebp \
     openjpeg \
     openssl \
+    openssh-client
     p7zip \
     tar \
     tiff \
