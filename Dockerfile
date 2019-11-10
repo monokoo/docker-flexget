@@ -6,23 +6,17 @@
 FROM lsiobase/alpine:3.10
 
 ENV TZ Asia/Shanghai
-ENV LANG C.UTF-8
-
-# Add edge/testing repositories.
-RUN printf "\
-@edge https://mirrors.cloud.tencent.com/alpine/edge/main\n\
-@testing https://mirrors.cloud.tencent.com/alpine/edge/testing\n\
-@community https://mirrors.cloud.tencent.com/alpine/edge/community\n\
-" >> /etc/apk/repositories
 
 RUN apk add \
-    python3@edge \
-    python3-dev@edge \
-    py3-lxml@edge \
-    boost-python3@edge  \
-    bash@edge \
-    g++@edge \
-    gcc@edge
+    python3 \
+    python3-dev \
+    py3-lxml \
+    boost-python3  \
+    bash && \
+    echo "**** install alpine sdk so that we can build libtorrent python bindings (for various plugin) ****" && \
+    apk add alpine-sdk && \
+    abuild-keygen -ian && \
+    usermod -aG abuild root
 
 RUN \
  echo "**** install build packages ****" && \
@@ -30,6 +24,8 @@ RUN \
     autoconf \
     automake \
     freetype-dev \
+    g++ \
+    gcc \
     jpeg-dev \
     lcms2-dev \
     libffi-dev \
@@ -82,10 +78,18 @@ RUN \
     setuptools \
     urllib3 \
     virtualenv && \
+ echo "**** build libtorrent-rasterbar, this takes a bit ****" && \
+ mkdir -p /build/py3-libtorrent-rasterbar && \
+ cd /build/py3-libtorrent-rasterbar && \
+ wget https://git.alpinelinux.org/aports/plain/testing/libtorrent-rasterbar/APKBUILD && \
+ abuild -F checksum && abuild -Fr && \
+ apk add --repository /root/packages/build py3-libtorrent-rasterbar && \
  echo "**** clean up ****" && \
  rm -rf \
     /root/.cache \
-    /tmp/*
+    /tmp/* \
+    /build \
+    /root/packages
 
 ##############################################################################
 # Here starts the usual changes compared to baseimage.
