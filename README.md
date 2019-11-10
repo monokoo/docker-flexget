@@ -2,6 +2,13 @@
 
 [![Build Status](https://img.shields.io/docker/cloud/automated/monokoo/flexget.svg?style=popout)](https://hub.docker.com/r/monokoo/flexget/builds)
 
+[![Build Status](https://img.shields.io/docker/build/cpoppema/docker-flexget.svg)](https://hub.docker.com/r/cpoppema/docker-flexget/builds)
+[![Image Size](https://img.shields.io/microbadger/image-size/cpoppema/docker-flexget.svg?style=flat&color=blue)](https://hub.docker.com/r/cpoppema/docker-flexget)
+[![Docker Stars](https://img.shields.io/docker/stars/cpoppema/docker-flexget.svg?style=flat&color=blue)](https://registry.hub.docker.com/v2/repositories/cpoppema/docker-flexget/stars/count/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/cpoppema/docker-flexget.svg?style=flat&color=blue)](https://registry.hub.docker.com/v2/repositories/cpoppema/docker-flexget/)
+[![Docker Automated build](https://img.shields.io/docker/automated/cpoppema/docker-flexget.svg?maxAge=2592000&style=flat&color=blue)](https://github.com/cpoppema/docker-flexget/)
+[![Buy Me A Coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/cpoppema)
+
 Read all about FlexGet [here](http://www.flexget.com/#Description).
 
 If you do not have a configuration already, you can look around starting off with something like this [config.yml](https://github.com/monokoo/docker-flexget/blob/master/sample_config.yml):
@@ -22,6 +29,24 @@ tasks:
 Put this file in your data/config folder as `config.yml`.
 
 For a much better FlexGet config.yml example take a look at the bottom of [this page](http://flexget.com/Cookbook/Series/SeriesPresetMultipleRSStoTransmission).
+
+## Note
+
+Recently the python version inside this image had to be upgraded from 2.x to 3.x, this might result in this error message:
+
+```
+INFO     scheduler                     Starting scheduler
+INFO     apscheduler.scheduler                 Scheduler started
+ERROR    apscheduler.jobstores.default                 Unable to restore job "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" -- removing it
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/site-packages/apscheduler/jobstores/sqlalchemy.py", line 141, in _get_jobs
+    jobs.append(self._reconstitute_job(row.job_state))
+  File "/usr/lib/python3.7/site-packages/apscheduler/jobstores/sqlalchemy.py", line 125, in _reconstitute_job
+    job_state = pickle.loads(job_state)
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe3 in position 1: ordinal not in range(128)
+```
+
+This is supposedly safe to ignore and should only happens once. If not, let me [know](https://github.com/cpoppema/docker-flexget/issues).
 
 ## Usage
 
