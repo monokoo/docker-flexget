@@ -8,6 +8,8 @@ FROM lsiobase/alpine:3.10
 ENV TZ Asia/Shanghai
 
 RUN apk add \
+    libxml2-dev \
+    libxslt-dev \
     python3 \
     python3-dev \
     py3-lxml \
@@ -105,6 +107,7 @@ COPY etc/ /etc
 RUN chmod -v +x \
     /etc/cont-init.d/*  \
     /etc/services.d/*/run
+COPY requirements.txt /
 
 # Ports and volumes.
 EXPOSE 6566/tcp
